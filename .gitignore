@@ -3,3 +3,6 @@ db_load
 *~
 *.sw?
 TAGS
+
+*.xls
+*.xlsx
