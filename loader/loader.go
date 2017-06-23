@@ -12,6 +12,7 @@ func Load(file string, db_data Db_data) {
 	}
 	db, db_err := open_database(db_data)
 	if db_err != nil {
+		log.Fatal("can not connect to the database: ", err)
 	}
 	process_data(fd, db)
 }
