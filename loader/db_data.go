@@ -1,10 +1,10 @@
 package loader
 
 type Db_data struct {
-	host string
-	port int
-	user string
-	password string
-	database string
+	Host string
+	Port int
+	User string
+	Password string
+	Database string
 }
 
