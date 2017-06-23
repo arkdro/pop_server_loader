@@ -1,5 +1,9 @@
 package loader
 
+import (
+	"github.com/tealeg/xlsx"
+)
+
 func Load(file string, db_data Db_data) {
 	fd, err := xlsx.OpenFile(file)
 	if err != nil {
