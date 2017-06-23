@@ -2,6 +2,7 @@ package loader
 
 import (
 	"github.com/tealeg/xlsx"
+	"fmt"
 	"log"
 )
 
@@ -22,5 +23,12 @@ func open_database(db_data Db_data) (string, error) {
 }
 
 func process_data(fd *xlsx.File, db string) {
+	for _, sheet := range fd.Sheets {
+		for _, row := range sheet.Rows {
+			for _, cell := range row.Cells {
+				text, _ := cell.String()
+				fmt.Printf("%s\n", text)
+			}
+		}
+	}
 }
-
