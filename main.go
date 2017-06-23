@@ -12,6 +12,7 @@ func main() {
 	var user = flag.String("user", "root", "db user")
 	var password = flag.String("password", "root", "db password")
 	var database = flag.String("database", "pdata", "database")
+	flag.Parse()
 	db_data := loader.Db_data{
 		Host: *hst,
 		Port: *port,
