@@ -1,0 +1,15 @@
+{
+	"ImportPath": "github.com/asdf/db_load",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v79",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/tealeg/xlsx",
+			"Comment": "v1.0.0-16-gb1dcce1",
+			"Rev": "b1dcce149d3ab2b6e87d4e7720d3112066ddb1cc"
+		}
+	]
+}
