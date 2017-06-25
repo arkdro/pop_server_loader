@@ -72,6 +72,14 @@ func fill_years(row *xlsx.Row) []string {
 	return cells
 }
 
+func is_empty(s string) bool {
+	if s == "" {
+		return true
+	} else {
+		return false
+	}
+}
+
 func is_float_str(s string) bool {
 	_, err := strconv.ParseFloat(s, 64)
 	if err != nil {
