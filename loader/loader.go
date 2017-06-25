@@ -54,3 +54,12 @@ func process_data(fd *xlsx.File, db *sql.DB) {
 		}
 	}
 }
+func is_index_row(row *xlsx.Row) bool {
+	text := row.Cells[0].Value
+	if text == "Index" {
+		return true
+	} else {
+		return false
+	}
+}
+
