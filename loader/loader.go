@@ -87,6 +87,22 @@ func fill_years(row *xlsx.Row) []string {
 	return cells
 }
 
+func extract_data_from_row(row *xlsx.Row) Row {
+	country := row.Cells[country_idx].Value
+	country_code := row.Cells[country_code_idx].Value
+	data := row.Cells[cell_begin_idx : cell_end_idx]
+	cells := make([]string, len(data))
+	for i := range data {
+		cells[i] = data[i].Value
+	}
+	res := Row{
+		country: country,
+		country_code: country_code,
+		data: cells,
+	}
+	return res
+}
+
 func valid_values(row Row) bool {
 	if is_empty(row.country) {
 		return false
