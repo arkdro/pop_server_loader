@@ -60,15 +60,29 @@ func build_dsn(db_data Db_data) string {
 }
 
 func process_data(fd *xlsx.File, db *sql.DB) {
-	for _, sheet := range fd.Sheets {
-		for _, row := range sheet.Rows {
-			for _, cell := range row.Cells {
-				text, _ := cell.String()
-				fmt.Printf("%s\n", text)
+	for idx_s, sheet := range fd.Sheets {
+		if idx_s != 0 {
+			continue
+		}
+		data_started_flag := false
+		var years []string
+		for _, sheet_row := range sheet.Rows {
+			if data_started_flag {
+				row := extract_data_from_row(sheet_row)
+				log.Printf("row: %v\n", row)
+				if valid_values(row) {
+					store_row(row, db, years)
+				}
+			} else {
+				if is_index_row(sheet_row) {
+					years = fill_years(sheet_row)
+					data_started_flag = true
+				}
 			}
 		}
 	}
 }
+
 func is_index_row(row *xlsx.Row) bool {
 	text := row.Cells[0].Value
 	if text == "Index" {
