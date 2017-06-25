@@ -9,12 +9,17 @@ import (
 )
 
 func Load(file string, db_data Db_data) {
+	fd := open_xls_file(file)
+	db := open_database(db_data)
+	process_data(fd, db)
+}
+
+func open_xls_file(file string) *xlsx.File {
 	fd, err := xlsx.OpenFile(file)
 	if err != nil {
 		log.Fatal("can not open file: ", err)
 	}
-	db := open_database(db_data)
-	process_data(fd, db)
+	return fd
 }
 
 func open_database(db_data Db_data) *sql.DB {
