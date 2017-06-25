@@ -154,7 +154,7 @@ func is_float_str(s string) bool {
 
 func store_row(row Row, db *sql.DB, years []string) {
 	cmd := `insert into country_median_age
-        (country, country_code year, age)
+        (country, country_code, year, age)
         values (?, ?, ?, ?)`
 	for i, age := range row.data {
 		year := years[i]
