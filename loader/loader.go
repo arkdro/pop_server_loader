@@ -38,7 +38,7 @@ func build_dsn(db_data Db_data) string {
 		"@tcp(" +
 		db_data.Host +
 		":" +
-		string(db_data.Port) +
+		fmt.Sprint(db_data.Port) +
 		")/" +
 		db_data.Database
 	return dsn
