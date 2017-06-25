@@ -23,11 +23,25 @@ func open_xls_file(file string) *xlsx.File {
 }
 
 func open_database(db_data Db_data) *sql.DB {
-	db, err := sql.Open("mysql", "user:password@/dbname")
+	dsn := build_dsn(db_data)
+	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatal("can not connect to the database: ", err)
 	}
 	return db
+}
+
+func build_dsn(db_data Db_data) string {
+	dsn := db_data.User	+
+		":" +
+		db_data.Password +
+		"@tcp(" +
+		db_data.Host +
+		":" +
+		string(db_data.Port) +
+		")/" +
+		db_data.Database
+	return dsn
 }
 
 func process_data(fd *xlsx.File, db *sql.DB) {
