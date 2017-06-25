@@ -93,6 +93,10 @@ func is_index_row(row *xlsx.Row) bool {
 }
 
 func fill_years(row *xlsx.Row) []string {
+	return extract_cell_values(row)
+}
+
+func extract_cell_values(row *xlsx.Row) []string {
 	data := row.Cells[cell_begin_idx : cell_end_idx]
 	cells := make([]string, len(data))
 	for i := range data {
@@ -104,11 +108,7 @@ func fill_years(row *xlsx.Row) []string {
 func extract_data_from_row(row *xlsx.Row) Row {
 	country := row.Cells[country_idx].Value
 	country_code := row.Cells[country_code_idx].Value
-	data := row.Cells[cell_begin_idx : cell_end_idx]
-	cells := make([]string, len(data))
-	for i := range data {
-		cells[i] = data[i].Value
-	}
+	cells := extract_cell_values(row)
 	res := Row{
 		country: country,
 		country_code: country_code,
