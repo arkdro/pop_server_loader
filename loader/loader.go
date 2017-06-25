@@ -17,6 +17,12 @@ const (
 	cell_end_idx = 19
 )
 
+type Row struct {
+	country string
+	country_code string
+	data []string
+}
+
 func Load(file string, db_data Db_data) {
 	fd := open_xls_file(file)
 	db := open_database(db_data)
