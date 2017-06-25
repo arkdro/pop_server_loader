@@ -10,6 +10,13 @@ import (
 	"strconv"
 )
 
+const (
+	country_idx = 2
+	country_code_idx = 4
+	cell_begin_idx = 5
+	cell_end_idx = 19
+)
+
 func Load(file string, db_data Db_data) {
 	fd := open_xls_file(file)
 	db := open_database(db_data)
