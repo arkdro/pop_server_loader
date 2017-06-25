@@ -6,6 +6,8 @@ import (
 	"github.com/tealeg/xlsx"
 	"fmt"
 	"log"
+//	"time"
+	"strconv"
 )
 
 func Load(file string, db_data Db_data) {
@@ -70,6 +72,24 @@ func fill_years(row *xlsx.Row) []string {
 		cells[i] = data[i].Value
 	}
 	return cells
+}
+
+func valid_values(row Row) bool {
+	if is_empty(row.country) {
+		return false
+	}
+	if is_empty(row.country_code) {
+		return false
+	}
+	for _, x := range row.data {
+		if is_empty(x) {
+			return false
+		}
+		if !is_float_str(x) {
+			return false
+		}
+	}
+	return true
 }
 
 func is_empty(s string) bool {
