@@ -63,3 +63,12 @@ func is_index_row(row *xlsx.Row) bool {
 	}
 }
 
+func fill_years(row *xlsx.Row) []string {
+	data := row.Cells[cell_begin_idx : cell_end_idx]
+	cells := make([]string, len(data))
+	for i := range data {
+		cells[i] = data[i].Value
+	}
+	return cells
+}
+
