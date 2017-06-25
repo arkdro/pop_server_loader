@@ -4,5 +4,6 @@ db_load
 *.sw?
 TAGS
 
+*.csv
 *.xls
 *.xlsx
