@@ -158,7 +158,8 @@ func store_row(row Row, db *sql.DB, years []string) {
         values (?, ?, ?, ?)`
 	for i, age := range row.data {
 		year := years[i]
-		res, err := db.Exec(cmd, row.country, row.country_code, year, age)
+		date := year + "-00-00"
+		res, err := db.Exec(cmd, row.country, row.country_code, date, age)
 		log.Println("row, res: ", res, ", err: ", err)
 	}
 }
